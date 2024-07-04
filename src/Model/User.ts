@@ -15,7 +15,7 @@ export interface IUser extends Document {
 export interface IMessage extends Document {
     content: string;
     createdAt: Date;
-}
+}   
 
 // Make Message Schema
 const MessageSchema: Schema<IMessage> = new Schema({
