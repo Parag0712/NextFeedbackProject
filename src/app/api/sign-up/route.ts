@@ -22,7 +22,6 @@ export interface IMessage extends Document {
 }
 
 export async function POST(request: Request) {
-    console.log("i am cl");
     
     await connect();
     try {
@@ -43,7 +42,7 @@ export async function POST(request: Request) {
         // Check Email exist or not
         const exitingUserVerifiedByEmail = await User.findOne({ email })
         // Generate Verify Code  
-        const verifyCode = Math.floor(10000 + Math.random() * 90000).toString();
+        const verifyCode = Math.floor(100000  + Math.random() * 900000).toString();
 
         if (exitingUserVerifiedByEmail) {
 

@@ -19,7 +19,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
             username: searchParams.get('username'),
         };
 
-        // validate with zod
+        // validate with zod    
         const result = UsernameQuerySchema.safeParse(queryParams);
         if (!result.success) {
             const usernameErrors = result.error.format().username?._errors || [];
