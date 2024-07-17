@@ -1,14 +1,7 @@
-import { usernameValidation } from "@/Schemas/singUpSchema";
 import { verifySchame } from "@/Schemas/verifySchema";
 import { connect } from "@/lib/dbConfig";
 import User from "@/model/User";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
-
-
-
-
-
 
 export async function POST(request: NextRequest, response: NextResponse) {
     await connect()
