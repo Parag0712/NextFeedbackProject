@@ -10,13 +10,15 @@ export async function GET(request: NextRequest) {
     const session = await getServerSession(authOptions)
     const _user: UserType = session?.user!;
 
-
+    // check session 
     if (!session || !_user) {
         return Response.json(
             { success: false, message: 'Not authenticated' },
             { status: 401 }
         );
     }
+
+    
     const useId = new mongoose.Types.ObjectId(_user.id);
 
     try {
