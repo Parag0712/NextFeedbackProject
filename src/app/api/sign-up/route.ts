@@ -22,11 +22,12 @@ export interface IMessage extends Document {
 }
 
 export async function POST(request: Request) {
+    console.log("i am cl");
+    
     await connect();
-
     try {
-        const { username, email, password } = await request.json();
-
+        const body = await request.json();
+        const { username, email, password } = body
         const exitingUserVerifiedUsername = await User.findOne({ username, isVerified: true })
         // Check Username exist or not
         if (exitingUserVerifiedUsername) {
