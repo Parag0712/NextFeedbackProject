@@ -70,9 +70,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
     } catch (error) {
         console.error('Error adding message:', error);
         return Response.json(
-          { message: 'Internal server error', success: false },
-          { status: 500 }
+            { message: 'Internal server error', success: false },
+            { status: 500 }
         );
-      
+
     }
 }
