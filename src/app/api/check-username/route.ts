@@ -4,13 +4,10 @@ import User from "@/model/User";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from 'zod'
 
-
 // check username
-
 const UsernameQuerySchema = z.object({
     username: usernameValidation,
 });
-
 
 export async function GET(request: NextRequest, response: NextResponse) {
     await connect()
@@ -36,15 +33,15 @@ export async function GET(request: NextRequest, response: NextResponse) {
                     status: 400
                 })
         }
-
+        
         const { username } = result.data
 
+        // check use verify or not
         const existingVerifiedUser = await User.findOne({
             username: username,
             isVerified: true
         })
 
-        // cheek use verify or not
         if (existingVerifiedUser) {
             return NextResponse.json({
                 success: false,
@@ -84,3 +81,4 @@ export async function GET(request: NextRequest, response: NextResponse) {
 
     }
 }
+
