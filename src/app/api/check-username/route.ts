@@ -53,7 +53,6 @@ export async function GET(request: NextRequest, response: NextResponse) {
             )
         }
 
-
         return NextResponse.json({
             success: true,
             message: "Username is unique"
@@ -61,12 +60,6 @@ export async function GET(request: NextRequest, response: NextResponse) {
             {
                 status: 200
             })
-
-
-
-        return NextResponse.json({})
-
-
 
     } catch (error) {
         console.error("Error checking username ", error);

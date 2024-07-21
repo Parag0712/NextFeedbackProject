@@ -8,39 +8,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     try {
         const { username, code } = await request.json();
         const decodedUsername = decodeURIComponent(username)
-        const result = verifySchame.safeParse({
-            username:decodedUsername,
-            code:code       
-        })
-
-        // check result success or not
-        if (!result.success) {
-            const formattedErrors = result.error.format();
-        
-            // Check for username and verification code errors
-            const usernameErrors = formattedErrors.username?._errors || [];
-            const verifyCodeErrors = formattedErrors.code?._errors || [];
-        
-            // Create an error message string
-            let errorMessage = '';
-            if (usernameErrors.length > 0) {
-                errorMessage += `Username errors: ${usernameErrors.join(', ')}. `;
-            }
-            if (verifyCodeErrors.length > 0) {
-                errorMessage += `Verification code errors: ${verifyCodeErrors.join(', ')}. `;
-            }
-            if (errorMessage === '') {
-                errorMessage = 'Invalid query parameters';
-            }
-        
-            return NextResponse.json({
-                success: false,
-                message: errorMessage.trim()
-            }, {
-                status: 400
-            });
-        }
-        
+      
         // check user if exist or not
         const user = await User.findOne({
             username: decodedUsername

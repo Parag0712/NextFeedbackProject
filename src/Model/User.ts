@@ -7,12 +7,13 @@ export interface IUser extends Document {
     password:string;
     verifyCode:string;
     verifyCodeExpiry:Date;
-    isAcceptingMessage:boolean;
+    isAcceptingMessages:boolean;
     isVerified:boolean;
     messages:IMessage[];
 }
 
 export interface IMessage extends Document {
+    _id:string
     content: string;
     createdAt: Date;
 }   
@@ -59,9 +60,8 @@ const userSchema: Schema<IUser> = new Schema({
         type:Date,
         required:[true,"Verify Code Expiry is required"]
     },
-    isAcceptingMessage:{
+    isAcceptingMessages:{
         type:Boolean,
-        required:[true,"Verify Code Expiry is required"],
         default:true
     },
     isVerified:{

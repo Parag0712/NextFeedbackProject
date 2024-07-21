@@ -1,7 +1,6 @@
 import { z } from "zod";
 
-export const singUpScheama = z.object({
-    username:z.string(),
-    email: z.string(),
-    password: z.string()
+export const singInScheama = z.object({
+    identifier: z.string(),
+    password: z.string(),
 }) 

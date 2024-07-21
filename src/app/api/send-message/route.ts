@@ -17,13 +17,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
         const formattedErrors = result.error.format();
 
         // Check for username and verification code errors
-        const usernameErrors = formattedErrors.username?._errors || [];
         const contentErrors = formattedErrors.content?._errors || [];
 
         let errorMessage = '';
-        if (usernameErrors.length > 0) {
-            errorMessage += `Username errors: ${usernameErrors.join(', ')}. `;
-        }
         if (contentErrors.length > 0) {
             errorMessage += `Verification code errors: ${contentErrors.join(', ')}. `;
         }
@@ -52,7 +48,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
         }
 
         // Check if the user is accepting messages
-        if (!user.isAcceptingMessage) {
+        if (!user.isAcceptingMessages) {
             return Response.json(
                 { message: 'User is not accepting messages', success: false },
                 { status: 403 } // 403 Forbidden status
